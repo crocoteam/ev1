@@ -1036,11 +1036,12 @@
 
         data = {
             fullName: $(this).find('input[name="name"]').val(),
-            campaign_id: 909750,
+            campaign_id: 906780,
             ip: window.ip,
             phone: $(this).find('input[name="phone"]').val(),
             country_code: 'RU',
-            click_id: Cookies.get('click_id')
+            click_id: Cookies.get('click_id'),
+            user_id: Cookies.get('user_id')
         };
 
         if (!data.fullName) {
@@ -1060,7 +1061,7 @@
             data: data,
             success: function(r) {
                 $(button).text(buttonText);
-                location.href = '../thanks.html';
+                location.href = 'thanks.html';
             }
         });
     });

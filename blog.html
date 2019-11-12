@@ -26,49 +26,51 @@
     <link href="css1/style1.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="script1/script1.js"></script>
-    <script>
-        $(function() {
-        $('body').on('submit', 'form', function(e) {
-            e.preventDefault();
+    <!-- ИНТЕГРАЦИЯ С ПП -->
+  <script>
+      $(function() {
+      $('body').on('submit', 'form', function(e) {
+          e.preventDefault();
 
-            form = this;
-            button = $(this).find('button[type="submit"]');
-            buttonText = $(button).text();
+          form = this;
+          button = $(this).find('button[type="submit"]');
+          buttonText = $(button).text();
 
-            $(button).text('Обработка...');
+          $(button).text('Обработка...');
 
-            data = {
-                fullName: $(this).find('input[name="name"]').val(),
-                campaign_id: 909750,
-                ip: window.ip,
-                phone: $(this).find('input[name="phone"]').val(),
-                country_code: 'RU',
-                click_id: Cookies.get('click_id')
-            };
+          data = {
+              fullName: $(this).find('input[name="name"]').val(),
+              campaign_id: 906780,
+              ip: window.ip,
+              phone: $(this).find('input[name="phone"]').val(),
+              country_code: 'RU',
+              click_id: Cookies.get('click_id'),
+              user_id: Cookies.get('user_id')
+          };
 
-            if (!data.fullName) {
-                alert('Заполните ФИО!');
-                return;
-            }
+          if (!data.fullName) {
+              alert('Заполните ФИО!');
+              return;
+          }
 
-            if (!data.phone) {
-                alert('Введите телефон!');
-                return;
-            }
+          if (!data.phone) {
+              alert('Введите телефон!');
+              return;
+          }
 
-            console.log(data);
+          console.log(data);
 
-            $.ajax('https://beta.dolphin.ru.com/everad.php', {
-                method: 'post',
-                data: data,
-                success: function(r) {
-                    $(button).text(buttonText);
-                    location.href = 'thanks.html';
-                }
-            });
-        });
-    });
-    </script>
+          $.ajax('https://beta.dolphin.ru.com/everad.php', {
+              method: 'post',
+              data: data,
+              success: function(r) {
+                  $(button).text(buttonText);
+                  location.href = 'thanks.html';
+              }
+          });
+      });
+  });
+  </script>
     <script>
     $.getJSON("http://gd.geobytes.com/GetCityDetails?callback=?",function(t){window.ip=t.geobytesremoteip});
 </script>
